@@ -4,8 +4,8 @@ Atmos is a modern, high-fidelity weather application that combines a robust **Dj
 
 <p align="center">
   <img src="https://i.ibb.co.com/HD8M4Ndw/Screenshot-2026-04-21-114739.png" width="32%" />
-  <img src="https://i.ibb.co.com/WvB2htm2/Screenshot-2026-04-21-115538.png" width="32%" />
-  <img src="https://i.ibb.co.com/JwSQ1Zhg/Screenshot-2026-04-21-120103.png" width="32%" />
+  <img src="https://i.ibb.co.com/KxVrPwTr/Screenshot-2026-04-21-115538.png" width="32%" />
+  <img src="https://i.ibb.co.com/C3S2cLrD/Screenshot-2026-04-21-120103.png" width="32%" />
 </p>
 
 ## ✨ Features
