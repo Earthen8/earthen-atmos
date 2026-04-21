@@ -2,7 +2,7 @@
 
 Atmos is a modern, high-fidelity weather application that combines a robust **Django Rest Framework** backend with a stunning **Flutter** frontend. It features a heavy glassmorphic design, dynamic background animations that respond to weather conditions, and comprehensive atmospheric data.
 
-![Atmos Preview](https://ibb.co.com/274Lh8NV)
+![Atmos Preview](https://i.ibb.co.com/HD8M4Ndw/Screenshot-2026-04-21-114739.png)
 
 ## ✨ Features
 
@@ -87,7 +87,7 @@ OPENWEATHER_API_KEY=your_secret_api_key_here
 ---
 
 ## 📸 Design Philosophy
-Atmos is built on the principle of **"Liquid Motion"**. Every element, from the background orbs to the glass card, is designed to feel alive and organic. By using `BackdropFilter` and `AnimatedContainer`, we achieve a level of depth that mimics real frosted glass under changing skies.
+Atmos is built on the principle of **"Liquid Motion"**. Every element, from the background orbs to the glass card, is designed to feel alive and organic. By using `BackdropFilter` and `AnimatedContainer`, I achieve a level of depth that mimics real frosted glass under changing skies.
 
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
