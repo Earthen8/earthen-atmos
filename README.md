@@ -53,11 +53,14 @@ python -m venv venv
 .\venv\Scripts\activate
 
 # Install dependencies
-pip install django djangorestframework requests python-dotenv django-cors-headers
+pip install -r requirements.txt
 
 # Setup environment variables
 cp .env.example .env
 # Edit .env and paste your OPENWEATHER_API_KEY
+
+# Run database migrations
+python manage.py migrate
 ```
 
 **Run Backend:**

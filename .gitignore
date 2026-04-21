@@ -8,6 +8,7 @@ __pycache__/
 *$py.class
 venv/
 env/
+db.sqlite3
 
 # Flutter
 .dart_tool/
