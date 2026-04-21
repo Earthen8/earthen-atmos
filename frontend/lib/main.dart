@@ -95,6 +95,88 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
   }
 
+  Widget _buildStatsGrid(weather) {
+    final stats = [
+      (Icons.water_drop_rounded, 'Humidity', '${weather.humidity.toStringAsFixed(0)}%'),
+      (Icons.thermostat_rounded, 'Feels Like', '${weather.feelsLike.toStringAsFixed(1)}°'),
+      (Icons.air_rounded, 'Wind', '${weather.windSpeed.toStringAsFixed(1)} m/s'),
+      (Icons.visibility_rounded, 'Visibility', '${(weather.visibility / 1000).toStringAsFixed(1)} km'),
+      (Icons.compress_rounded, 'Pressure', '${weather.pressure.toStringAsFixed(0)} hPa'),
+      (Icons.wb_cloudy_rounded, 'Condition', weather.condition),
+    ];
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+        childAspectRatio: 1.6,
+      ),
+      itemCount: stats.length,
+      itemBuilder: (context, index) {
+        final (icon, label, value) = stats[index];
+        return _buildStatTile(icon, label, value);
+      },
+    );
+  }
+
+  Widget _buildStatTile(IconData icon, String label, String value) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.white.withOpacity(0.18),
+                Colors.white.withOpacity(0.06),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.white.withOpacity(0.25)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Icon(icon, color: Colors.white60, size: 16),
+                  const SizedBox(width: 6),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      color: Colors.white60,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final weatherProvider = context.watch<WeatherProvider>();
@@ -152,12 +234,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
           // SCROLLABLE CONTENT LAYER
           SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 80, 24, 32),
-                child: Column(
-                  children: [
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 80, 24, 32),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
                     // GLASSMORPHISM CARD
                     ClipRRect(
                       borderRadius: BorderRadius.circular(36),
@@ -299,54 +388,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       ),
                                     ),
                                     const SizedBox(height: 28),
-                                    // STATS ROW
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                          sigmaX: 10,
-                                          sigmaY: 10,
-                                        ),
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 24,
-                                            vertical: 16,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(
-                                              0.1,
-                                            ),
-                                            borderRadius: BorderRadius.circular(
-                                              20,
-                                            ),
-                                            border: Border.all(
-                                              color: Colors.white.withOpacity(
-                                                0.2,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const Icon(
-                                                Icons.water_drop_rounded,
-                                                color: Colors.white70,
-                                                size: 20,
-                                              ),
-                                              const SizedBox(width: 8),
-                                              Text(
-                                                '${weatherProvider.weather!.humidity.toStringAsFixed(0)}% Humidity',
-                                                style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white70,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    _buildStatsGrid(weatherProvider.weather!),
                                   ],
                                 )
                               else
@@ -448,7 +490,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
               ),
             ),
-          ),
+          );
+      },
+    ),
+  ),
 
           // FIXED TOP LAYER: Atmos title pinned to the top of the screen
           Positioned(
