@@ -3,6 +3,11 @@ import requests
 
 def fetch_weather(city_name):
     api_key = os.getenv("OPENWEATHER_API_KEY")
+    
+    if not api_key:
+        print("Error: OPENWEATHER_API_KEY is not loaded.")
+        return None
+
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
     
     try:
@@ -16,5 +21,6 @@ def fetch_weather(city_name):
             "humidity": data.get("main", {}).get("humidity"),
             "city_name": data.get("name")
         }
-    except requests.RequestException:
+    except requests.RequestException as e:
+        print(f"OpenWeather API Request Failed: {e}")
         return None
