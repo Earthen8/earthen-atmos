@@ -1,6 +1,6 @@
 # ☁️ Atmos — Premium Weather Experience
 
-Atmos is a modern, high-fidelity weather application that combines a robust **Django Rest Framework** backend with a stunning **Flutter** frontend. It features a heavy glassmorphic design, dynamic background animations that respond to weather conditions, and comprehensive atmospheric data.
+Atmos is a modern, high-fidelity weather application that combines a robust **Django Rest Framework** backend with a stunning **Flutter** frontend. It features a heavy glassmorphic design, dynamic generative weather environments, and comprehensive atmospheric data.
 
 <p align="center">
   <img src="https://i.ibb.co.com/HD8M4Ndw/Screenshot-2026-04-21-114739.png" width="32%" />
@@ -10,21 +10,23 @@ Atmos is a modern, high-fidelity weather application that combines a robust **Dj
 
 ## ✨ Features
 
+- **Generative Weather Environments**: A custom-built engine using Flutter's `CustomPainter` that renders real-time, procedurally generated weather effects.
+- **Advanced Particle Systems**: Unique physics for every condition—falling rain with wind drift, oscillating snowflakes, and floating "Frutiger Aero" bubbles.
+- **Atmospheric Visuals**: Dynamic lighting including pulsing sun rays, drifting procedural clouds, periodic lightning bolts with screen flashes, and shimmering puddle effects.
 - **Heavy Glassmorphism**: A state-of-the-art UI with deep blurs, multi-layered translucency, and inner glow effects.
-- **Dynamic Atmosphere**: Animated background gradients and ambient orbs that change colors based on real-time weather conditions.
 - **6-Point Data Grid**: Comprehensive stats including Feels Like, Humidity, Wind Speed, Visibility, Pressure, and Conditions.
 - **Smart Search**: Intuitive city searching with automatic soft-keyboard dismissal and focus management.
-- **Responsive & Centered**: A layout that intelligently adapts to different screen sizes while keeping focus on the data.
-- **Portrait Locked**: Optimized for the best vertical mobile experience.
+- **Portrait locked**: Optimized for the best vertical mobile experience.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Frontend**: Flutter (Dart)
+  - **Core**: CustomPainter & AnimationController
   - **State Management**: Provider
   - **Networking**: Http
-  - **UI**: Custom Glassmorphism & Animated Shadows
+  - **UI**: Heavy Glassmorphism & Procedural Backgrounds
 - **Backend**: Django (Python)
   - **Framework**: Django Rest Framework (DRF)
   - **External API**: OpenWeatherMap API
@@ -94,7 +96,7 @@ OPENWEATHER_API_KEY=your_secret_api_key_here
 ---
 
 ## 📸 Design Philosophy
-Atmos is built on the principle of **"Liquid Motion"**. Every element, from the background orbs to the glass card, is designed to feel alive and organic. By using `BackdropFilter` and `AnimatedContainer`, I achieve a level of depth that mimics real frosted glass under changing skies.
+Atmos is built on the principle of **"Liquid Motion"**. Every element, from the generative particle backgrounds to the heavy glass cards, is designed to feel alive and organic. By leveraging Flutter's `CustomPainter`, the app moves beyond static gradients to create a truly immersive environment that mirrors the sky.
 
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
@@ -102,3 +104,4 @@ Feel free to fork this repository and submit pull requests. For major changes, p
 ---
 
 **Built by Earthen8 for a better weather experience.**
+
